@@ -12,6 +12,7 @@ type BST struct {
 	root *Node
 }
 
+//insert nodes into bst
 func (t *BST) Insert(data int) *BST {
 	if t.root == nil {
 		t.root = &Node{val: data, left: nil, right: nil}
@@ -39,6 +40,7 @@ func (n *Node) insert(data int) {
 	}
 }
 
+//inorder traversal of bst
 func (t *BST) Inorder() {
 	if t.root == nil {
 		return
