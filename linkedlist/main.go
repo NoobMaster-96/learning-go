@@ -19,4 +19,6 @@ func main() {
 	l2.Insert(5)
 	l2.Insert(9)
 	l2.Print()
+	l3 := ll.Merge(l1, l2)
+	l3.Print()
 }
