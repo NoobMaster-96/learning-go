@@ -1,7 +1,7 @@
 package main
 
 import (
-	bst "binarysearchtree/bst"
+	bst "binarysearchtree/BinarySearchTree"
 	"fmt"
 )
 
