@@ -1,6 +1,10 @@
 package binarysearchtree
 
-import "fmt"
+import (
+	"fmt"
+
+	"go.uber.org/zap"
+)
 
 type Node struct {
 	val   int
@@ -13,13 +17,15 @@ type BST struct {
 }
 
 //insert nodes into bst
-func (t *BST) Insert(data int) *BST {
-	if t.root == nil {
-		t.root = &Node{val: data, left: nil, right: nil}
+func (bst *BST) Insert(data int) *BST {
+	if bst.root == nil {
+		bst.root = &Node{val: data, left: nil, right: nil}
+		zap.L().Info("Root node created", zap.Int("Root value", data))
 	} else {
-		t.root.insert(data)
+		zap.L().Debug("Helper Function called for inserting nodes into Binary Search Tree")
+		bst.root.insert(data)
 	}
-	return t
+	return bst
 }
 
 func (n *Node) insert(data int) {
@@ -28,12 +34,14 @@ func (n *Node) insert(data int) {
 	} else if data <= n.val {
 		if n.left == nil {
 			n.left = &Node{val: data, left: nil, right: nil}
+			zap.L().Info("Left child node created", zap.Int("Parent value", n.val), zap.Int("Child value", data))
 		} else {
 			n.left.insert(data)
 		}
 	} else {
 		if n.right == nil {
 			n.right = &Node{val: data, left: nil, right: nil}
+			zap.L().Info("Right child node created", zap.Int("Parent value", n.val), zap.Int("Child value", data))
 		} else {
 			n.right.insert(data)
 		}
@@ -41,11 +49,12 @@ func (n *Node) insert(data int) {
 }
 
 //inorder traversal of bst
-func (t *BST) Inorder() {
-	if t.root == nil {
+func (bst *BST) Inorder() {
+	if bst.root == nil {
+		zap.L().Error("No nodes present in the Binary Search Tree")
 		return
 	} else {
-		inorder(t.root)
+		inorder(bst.root)
 	}
 }
 

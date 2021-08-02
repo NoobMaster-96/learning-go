@@ -1,13 +1,27 @@
 package main
 
 import (
-	bst "binarysearchtree/BinarySearchTree"
-	"fmt"
+	bst "./BinarySearchTree"
+
+	"go.uber.org/zap"
 )
 
+func initlogger() *zap.Logger {
+	config := zap.NewDevelopmentConfig()
+	logger, _ := config.Build()
+	return logger
+}
+
 func main() {
-	fmt.Println("Binary Search Tree")
+	loggerMgr := initlogger()
+	zap.ReplaceGlobals(loggerMgr)
+	defer loggerMgr.Sync() // flushes buffer, if any
+	logger := loggerMgr
+	logger.Debug("START!")
+	logger.Info("Binary Search Tree")
 	tree := &bst.BST{}
+	//calling inorder on empty tree
+	tree.Inorder()
 	//adding nodes into the bst
 	tree.Insert(20)
 	tree.Insert(15)
