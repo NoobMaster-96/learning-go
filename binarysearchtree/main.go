@@ -17,7 +17,7 @@ func main() {
 	zap.ReplaceGlobals(loggerMgr)
 	defer loggerMgr.Sync() // flushes buffer, if any
 	logger := loggerMgr
-	logger.Debug("START!")
+	logger.Debug("START!!!!")
 	logger.Info("Binary Search Tree")
 	tree := &bst.BST{}
 	//calling inorder on empty tree
